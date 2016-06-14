@@ -24,7 +24,7 @@ testActivities <- read.table("UCI HAR Dataset/test/Y_test.txt")
 testSubjects <- read.table("UCI HAR Dataset/test/subject_test.txt")
 test <- cbind(testSubjects, testActivities, test)
 
-
+# Combine datasets, name columns and write file
 all <- rbind(train, test)
 colnames(all) <- c("subject", "activity", meanSD.names)
 all$activity <- factor(all$activity, levels = activityLabels[,1], labels = activityLabels[,2])
