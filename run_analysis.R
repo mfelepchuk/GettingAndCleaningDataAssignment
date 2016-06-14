@@ -25,12 +25,12 @@ testSubjects <- read.table("UCI HAR Dataset/test/subject_test.txt")
 test <- cbind(testSubjects, testActivities, test)
 
 
-allData <- rbind(train, test)
-colnames(allData) <- c("subject", "activity", meanSD.names)
-allData$activity <- factor(allData$activity, levels = activityLabels[,1], labels = activityLabels[,2])
-allData$subject <- as.factor(allData$subject)
+all <- rbind(train, test)
+colnames(all) <- c("subject", "activity", meanSD.names)
+all$activity <- factor(all$activity, levels = activityLabels[,1], labels = activityLabels[,2])
+all$subject <- as.factor(all$subject)
 
-allData.melted <- melt(allData, id = c("subject", "activity"))
-allData.mean <- dcast(allData.melted, subject + activity ~ variable, mean)
+all.melt <- melt(all, id = c("subject", "activity"))
+all.mean <- dcast(all.melted, subject + activity ~ variable, mean)
 
-write.table(allData.mean, "tidy data.txt", row.names = FALSE, quote = FALSE)
+write.table(all.mean, "tidy data.txt", row.names = FALSE, quote = FALSE)
